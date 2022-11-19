@@ -1,0 +1,19 @@
+<div class="row justify-content-center align-items-center">
+  <form class="col-8 col-lg-3" [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+    <img src="assets/images/logo.png" class="w-100" alt="Logo">
+    <mat-form-field class="w-100 my-2" appearance="outline">
+      <mat-label>Adres email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error>Wpisz poprawny adres email</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Hasło</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error>Wpisz hasło</mat-error>
+    </mat-form-field>
+    <div class="d-flex justify-content-between mt-2">
+      <a routerLink="/register" class="link-primary">Nie mam konta</a>
+      <button mat-flat-button color="primary" [disabled]="mainForm.invalid">Zaloguj się</button>
+    </div>
+  </form>
+</div>
