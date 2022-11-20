@@ -7,7 +7,7 @@ class Database
 
     public function __construct()
     {
-        $this->config = parse_ini_file('../private/credentials.ini');
+        $this->config = parse_ini_file(__DIR__.'/../private/credentials.ini');
         try {
             $this->connection = mysqli_connect($this->config['db_host'], $this->config['db_user'], $this->config['db_password'], $this->config['db_name'], $this->config['db_port']);
 
