@@ -59,18 +59,21 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+// Overriding bootstrap theme
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 
 $primary:       #083c5e;
 $secondary:     #661714;
 
-//futhermore it's necesary override the $theme-colors
-
 $theme-colors: (
   "primary":    $primary,
   "secondary":  $secondary
 );
 
-
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+// Overriding material classes
+.mdc-icon-button{
+  display: inline-flex !important;
+}
