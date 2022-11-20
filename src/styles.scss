@@ -77,3 +77,15 @@ $theme-colors: (
 .mdc-icon-button{
   display: inline-flex !important;
 }
+
+td, th {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  vertical-align: middle;
+  height: 45px;
+}
+
+.mdc-button.grade {
+  min-width: 40px !important;
+  height: 40px !important;
+}
