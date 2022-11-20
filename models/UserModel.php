@@ -1,12 +1,16 @@
 <?php
-require_once "./Database.php";
+require_once "Database.php";
 
 class UserModel extends Database
 {
     // GET
-    public function getUsers($role)
+    public function getUsers($role = NULL)
     {
-        return json_encode($this->select("SELECT * FROM users WHERE role = ?", ["i", $role]));
+        if ($role) {
+            return $this->select("SELECT * FROM users WHERE role = ?", ["i", $role]);
+        } else {
+            return $this->select("SELECT * FROM users");
+        }
     }
 
     public function getUser($id)
