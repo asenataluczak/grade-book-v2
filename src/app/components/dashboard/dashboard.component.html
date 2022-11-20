@@ -7,7 +7,7 @@
     <strong>
       <ul class="nav flex-column">
         <li>
-          <a class="nav-link" routerLinkActive="bg-light" [routerLink]="[
+          <a class="nav-link text-light" routerLinkActive="bg-light text-primary" [routerLink]="[
               '/dashboard',
               { outlets: { dashboard: 'grades-student' } }
             ]">
@@ -15,7 +15,7 @@
           </a>
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="bg-light" [routerLink]="[
+          <a class="nav-link text-light" routerLinkActive="bg-light text-primary" [routerLink]="[
               '/dashboard',
               { outlets: { dashboard: 'grades-teacher' } }
             ]">
@@ -24,7 +24,7 @@
         </li>
         <hr />
         <li>
-          <a class="nav-link" routerLinkActive="bg-light"
+          <a class="nav-link text-light" routerLinkActive="bg-light text-primary"
             [routerLink]="['/dashboard', { outlets: { dashboard: 'users' } }]">
             Użytkownicy (Admin)
           </a>

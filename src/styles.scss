@@ -63,22 +63,27 @@ body {
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 
-$primary:       #083c5e;
-$secondary:     #661714;
+$primary: #083c5e;
+$secondary: #661714;
 
 $theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary
+  "primary": $primary,
+  "secondary": $secondary,
 );
 
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 // Overriding material classes
-.mdc-icon-button{
+.mdc-icon-button {
   display: inline-flex !important;
 }
 
-td, th {
+.mat-drawer-side {
+  border-right: none !important;
+}
+
+td,
+th {
   padding-top: 2px !important;
   padding-bottom: 2px !important;
   vertical-align: middle;
