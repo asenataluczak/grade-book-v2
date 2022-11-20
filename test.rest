@@ -1,0 +1,92 @@
+# POST http://localhost:8041/index.php/login HTTP/1.1
+# content-type: application/json
+
+# {   
+#     "email": "asenata.luczak@gmail.com",
+#     "password": "qwerty"
+# }
+
+# ###
+
+# DELETE http://localhost:8041/index.php/logout
+
+# ###
+
+# GET http://localhost:8041/index.php/users/0
+
+# ###
+
+GET http://localhost:8041/index.php/user/list
+
+###
+
+# GET http://localhost:8041/index.php/auth
+
+# ###
+
+# GET http://localhost:8041/index.php/users/2/user
+
+# ###
+
+# DELETE http://localhost:8041/index.php/users/3/delete
+
+# ###
+
+# POST http://localhost:8041/index.php/users/register HTTP/1.1
+# content-type: application/json
+
+# {
+#     "fullname": "krystyna testowa",
+#     "email": "krystyna.testowa@mailowy",
+#     "password": "qwerty"
+# }
+
+# ###
+
+# PATCH http://localhost:8041/index.php/users/19 HTTP/1.1
+# content-type: application/json
+
+# {
+#     "password": "Qwerty1"
+# }
+
+# ###
+
+# GET http://localhost:8041/index.php/courses
+
+# ###
+
+# GET http://localhost:8041/index.php/grades/14
+
+# ###
+
+# DELETE http://localhost:8041/index.php/grades/3
+
+
+# ###
+
+# GET http://localhost:8041/index.php/grades/2/course
+
+# ###
+
+# GET http://localhost:8041/index.php/grades/10/history
+
+# ###
+
+# POST http://localhost:8041/index.php/grades/14/course/6 HTTP/1.1
+# content-type: application/json
+
+# {
+#     "description": "Kolokwium",
+#     "value": 5,
+#     "author": "Basenata Tłuczek"
+# }
+
+# ###
+# PATCH http://localhost:8041/index.php/grades/10 HTTP/1.1
+# content-type: application/json
+
+# {
+#     "value": "3",
+#     "author": "Basenata Tłuczek"
+# }
