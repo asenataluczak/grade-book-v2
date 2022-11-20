@@ -1,4 +1,4 @@
-# POST http://localhost:8041/index.php/login HTTP/1.1
+# POST http://localhost:8041/BE-php-grade-book/index.php/login HTTP/1.1
 # content-type: application/json
 
 # {   
@@ -8,31 +8,31 @@
 
 # ###
 
-# DELETE http://localhost:8041/index.php/logout
+# DELETE http://localhost:8041/BE-php-grade-book/index.php/logout
 
 # ###
 
-# GET http://localhost:8041/index.php/users/0
+# GET http://localhost:8041/BE-php-grade-book/index.php/users/0
 
 # ###
 
-GET http://localhost:8041/index.php/user/list
+GET http://localhost:8041/BE-php-grade-book/index.php/user/list
 
 ###
 
-# GET http://localhost:8041/index.php/auth
+# GET http://localhost:8041/BE-php-grade-book/index.php/auth
 
 # ###
 
-# GET http://localhost:8041/index.php/users/2/user
+# GET http://localhost:8041/BE-php-grade-book/index.php/users/2/user
 
 # ###
 
-# DELETE http://localhost:8041/index.php/users/3/delete
+# DELETE http://localhost:8041/BE-php-grade-book/index.php/users/3/delete
 
 # ###
 
-# POST http://localhost:8041/index.php/users/register HTTP/1.1
+# POST http://localhost:8041/BE-php-grade-book/index.php/users/register HTTP/1.1
 # content-type: application/json
 
 # {
@@ -43,7 +43,7 @@ GET http://localhost:8041/index.php/user/list
 
 # ###
 
-# PATCH http://localhost:8041/index.php/users/19 HTTP/1.1
+# PATCH http://localhost:8041/BE-php-grade-book/index.php/users/19 HTTP/1.1
 # content-type: application/json
 
 # {
@@ -52,28 +52,28 @@ GET http://localhost:8041/index.php/user/list
 
 # ###
 
-# GET http://localhost:8041/index.php/courses
+# GET http://localhost:8041/BE-php-grade-book/index.php/courses
 
 # ###
 
-# GET http://localhost:8041/index.php/grades/14
+# GET http://localhost:8041/BE-php-grade-book/index.php/grades/14
 
 # ###
 
-# DELETE http://localhost:8041/index.php/grades/3
+# DELETE http://localhost:8041/BE-php-grade-book/index.php/grades/3
 
 
 # ###
 
-# GET http://localhost:8041/index.php/grades/2/course
+# GET http://localhost:8041/BE-php-grade-book/index.php/grades/2/course
 
 # ###
 
-# GET http://localhost:8041/index.php/grades/10/history
+# GET http://localhost:8041/BE-php-grade-book/index.php/grades/10/history
 
 # ###
 
-# POST http://localhost:8041/index.php/grades/14/course/6 HTTP/1.1
+# POST http://localhost:8041/BE-php-grade-book/index.php/grades/14/course/6 HTTP/1.1
 # content-type: application/json
 
 # {
@@ -83,7 +83,7 @@ GET http://localhost:8041/index.php/user/list
 # }
 
 # ###
-# PATCH http://localhost:8041/index.php/grades/10 HTTP/1.1
+# PATCH http://localhost:8041/BE-php-grade-book/index.php/grades/10 HTTP/1.1
 # content-type: application/json
 
 # {
