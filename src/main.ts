@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withDebugTracing, withPreloading } from '@angular/router';
@@ -12,7 +13,8 @@ bootstrapApplication(AppComponent, {
       withPreloading(PreloadAllModules),
       withDebugTracing(),
     ),
-    provideAnimations()]
+    provideAnimations(),
+    provideHttpClient()]
 }
 )
   .catch(err => console.error(err));
