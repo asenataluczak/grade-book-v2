@@ -11,7 +11,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(APP_ROUTES,
       withPreloading(PreloadAllModules),
-      withDebugTracing(),
+      // withDebugTracing(),
     ),
     provideAnimations(),
     provideHttpClient()]
