@@ -7,12 +7,15 @@ import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog
 import { UserService } from 'src/app/services/user/user.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
+import { UserDialogComponent } from '../dialogs/user-dialog/user-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatDialogModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatDialogModule, MatInputModule, MatFormFieldModule],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
@@ -23,7 +26,17 @@ export class UsersComponent {
     this.users$ = this.userService.getUsers();
   }
 
-  openAddOrEditUserDialog(user?: User) {
+  openUserDialog(user?: User) {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      data: { user },
+      width: '600px'
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data && user) {
+        // TODO: update user
+        console.log('update user')
+      }
+    })
   }
 
   deleteUser(userId: any) {

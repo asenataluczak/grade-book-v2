@@ -1,4 +1,4 @@
-<button mat-flat-button color="primary" (click)="openAddOrEditUserDialog()">Dodaj użytkownika</button>
+<button mat-flat-button color="primary" (click)="openUserDialog()">Dodaj użytkownika</button>
 <table class="table mt-4">
   <thead>
     <tr>
@@ -18,7 +18,7 @@
       <td>{{ user.role }}</td>
       <td>{{ user.active ? 'Tak' : 'Nie' }}</td>
       <td>
-        <button mat-icon-button color="primary" (click)="openAddOrEditUserDialog(user)">
+        <button mat-icon-button color="primary" (click)="openUserDialog(user)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="accent" (click)="deleteUser(user.id)">
