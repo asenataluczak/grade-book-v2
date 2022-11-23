@@ -4,6 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
+import { UserService } from 'src/app/services/user/user.service';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/interfaces/user.interface';
 
 
 @Component({
@@ -14,11 +17,13 @@ import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
-  users = [{ id: 123, fullname: 'asdas sdas', email: 'email', role: 0, active: true }, { id: 123, fullname: 'asdas sdas', email: 'email', role: 0, active: true }];
+  users$: Observable<Array<User>>;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private userService: UserService) {
+    this.users$ = this.userService.getUsers();
+  }
 
-  openAddOrEditUserDialog(user?: any) {
+  openAddOrEditUserDialog(user?: User) {
   }
 
   deleteUser(userId: any) {
