@@ -4,9 +4,9 @@ require_once "Database.php";
 class UserModel extends Database
 {
     // GET
-    public function getUsers($role = NULL)
+    public function getUsers($role)
     {
-        if ($role) {
+        if (!is_null($role)) {
             return $this->select("SELECT * FROM users WHERE role = ?", ["i", $role]);
         } else {
             return $this->select("SELECT * FROM users");
