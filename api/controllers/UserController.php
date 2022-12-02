@@ -14,9 +14,10 @@ class UserController extends BaseController
             try {
                 $userModel = new UserModel();
 
-                $role = $arrQueryStringParams['role'];
+                $role = $arrQueryStringParams['role'] ?? NULL;
+                $userId = $arrQueryStringParams['id'] ?? NULL;
 
-                $arrUsers = $userModel->getUsers($role);
+                $arrUsers = $userModel->getUsers($role, $userId);
                 $responseData = json_encode($arrUsers);
             } catch (Error $e) {
                 $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
