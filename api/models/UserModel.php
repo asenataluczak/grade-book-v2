@@ -25,8 +25,11 @@ class UserModel extends Database
     }
 
     // DELETE
-    public function deleteUser()
+    public function deleteUser($id)
     {
+        if (!is_null($id)) {
+            return $this->executeStatement("DELETE FROM users WHERE id =?", ["i", $id]);
+        }
     }
 
     // PATCH
