@@ -21,6 +21,14 @@
       <input matInput type="password" formControlName="passwordAgain">
       <mat-error>Wpisz pasujące hasło</mat-error>
     </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100 my-2">
+      <mat-label>Rola</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let role of keys()" [value]="role">
+          {{role}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions class="d-flex justify-content-end">

@@ -6,18 +6,22 @@ import { PasswordValidator } from 'src/app/utils/confirm-password.validator';
 import { FULLNAME_PATTERN, EMAIL_PATTERN } from 'src/app/utils/utils.constants';
 import { User } from 'src/app/interfaces/user.interface';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { Roles } from 'src/app/utils/roles.enum';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-user-dialog',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatDialogModule, ReactiveFormsModule, MatButtonModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatDialogModule, ReactiveFormsModule, MatButtonModule, MatOptionModule, MatSelectModule],
   templateUrl: './user-dialog.component.html',
   styleUrls: ['./user-dialog.component.scss']
 })
 export class UserDialogComponent {
   mainForm!: FormGroup;
+  roles = Roles;
 
   constructor(
     public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -30,10 +34,10 @@ export class UserDialogComponent {
     this.buildForm();
   }
 
-  // keys(): Array<string> {
-  //   // var keys = Object.keys(this.roles);
-  //   // return keys.slice(keys.length / 2);
-  // }
+  keys(): Array<string> {
+    let keys = Object.keys(this.roles);
+    return keys.slice(keys.length / 2);
+  }
 
   onSubmit() {
     let data: any = {
@@ -65,7 +69,11 @@ export class UserDialogComponent {
         !this.data.user
           ? [Validators.required, PasswordValidator('password')]
           : [PasswordValidator('password')],
-      ]
+      ],
+      role: [
+        this.roles[this.data.user?.role] || '',
+        !this.data.user ? Validators.required : [],
+      ],
     });
   }
 }

@@ -10,6 +10,7 @@ import { User } from 'src/app/interfaces/user.interface';
 import { UserDialogComponent } from '../dialogs/user-dialog/user-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { Roles } from 'src/app/utils/roles.enum';
 
 
 @Component({
@@ -21,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class UsersComponent {
   users$: Observable<Array<User>>;
+  roles = Roles;
 
   constructor(public dialog: MatDialog, private userService: UserService) {
     this.users$ = this.userService.getUsers();
