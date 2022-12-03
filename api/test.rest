@@ -26,9 +26,9 @@ GET http://localhost:8041/BE-php-grade-book/index.php/user/list
 
 # GET http://localhost:8041/BE-php-grade-book/index.php/users/2/user
 
-# ###
+###
 
-# DELETE http://localhost:8041/BE-php-grade-book/index.php/users/3/delete
+DELETE http://localhost:80/grade-book-v2/api/index.php/user/delete?id=2
 
 # ###
 
