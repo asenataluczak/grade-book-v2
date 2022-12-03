@@ -47,7 +47,7 @@ export class UsersComponent {
     });
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        console.log('confirmed')
+        this.userService.deleteUser(userId).subscribe(() => { this.users$ = this.userService.getUsers() })
       }
     })
   }

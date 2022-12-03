@@ -14,4 +14,8 @@ export class UserService {
   getUsers(role?: number): Observable<Array<User>> {
     return this.http.get<Array<User>>(`${environment.backendUrl}/user/list${role ? '?role = ' + role : ''}`)
   }
+
+  deleteUser(id: number) {
+    return this.http.delete(`${environment.backendUrl}/user/delete?id=${id}`)
+  }
 }
