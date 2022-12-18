@@ -38,6 +38,9 @@ class UserModel extends Database
         $data = json_decode($data, TRUE);
 
         foreach ($data as $key => $value) {
+            if ($key == 'password'){
+                $value = password_hash($value, PASSWORD_BCRYPT);
+            }
             return $this->executeStatement("UPDATE users SET $key='$value' WHERE id = $id");
         }
     }
