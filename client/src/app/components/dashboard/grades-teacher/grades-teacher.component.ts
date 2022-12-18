@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Course } from 'src/app/interfaces/course.interface';
-import { GradeService } from 'src/app/services/grade/grade.service';
+import { GradeService } from 'src/app/services/grade.service';
 
 
 @Component({
