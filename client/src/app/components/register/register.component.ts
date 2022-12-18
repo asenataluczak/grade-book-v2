@@ -7,11 +7,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RouterLink,MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule,
+  imports: [CommonModule, RouterLink, MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule,
     FormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
@@ -21,12 +22,21 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
+    private userService: UserService
   ) {
     this.buildForm();
   }
 
   onSubmit() {
-
+    let data = {
+      fullname: this.mainForm.value.fullname,
+      email: this.mainForm.value.email,
+      password: this.mainForm.value.password,
+      role: 0
+    }
+    this.userService.addUser(data).subscribe(() => {
+      // forward to login
+    })
   }
 
   private buildForm() {

@@ -22,4 +22,8 @@ export class UserService {
   editUser(id: number, data: any) {
     return this.http.patch(`${environment.backendUrl}/user/edit?id=${id}`, data)
   }
+
+  addUser(data: any) {
+    return this.http.post(`${environment.backendUrl}/user/add`, data)
+  }
 }
