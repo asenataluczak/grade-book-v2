@@ -1,0 +1,27 @@
+<table class="table ">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Student</th>
+      <th scope="col">Oceny</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students; let i = index">
+      <th scope="row" style="width: 40px">{{ i + 1 }}</th>
+      <td style="width: 300px">{{ student?.fullname }}</td>
+      <td>
+        <span *ngFor="let grade of getGrades(student.id)"
+          class="bg-primary text-white px-3 py-2 me-1 d-inline-block pe-auto"
+          style="border-radius: 10%; cursor: pointer"><strong>{{ grade.value
+            }}</strong></span>
+      </td>
+      <td style="width: 50px" class="ml-auto">
+        <button type="button" mat-icon-button color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
