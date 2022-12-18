@@ -29,8 +29,7 @@ if ($pathSegments[0] == 'user') {
     require "./controllers/UserController.php";
     $objFeedController = new UserController();
 }
-
-if ($pathSegments[0] == 'course') {
+else if ($pathSegments[0] == 'course') {
     require "./controllers/CourseController.php";
     $objFeedController = new CourseController();
 } else {
