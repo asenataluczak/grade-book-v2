@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { GradesStudentComponent } from "./components/dashboard/grades-student/grades-student.component";
+import { GradesTeacherComponent } from "./components/dashboard/grades-teacher/grades-teacher.component";
 import { UsersComponent } from "./components/dashboard/users/users.component";
 import { WelcomeComponent } from "./components/dashboard/welcome/welcome.component";
 import { LoginComponent } from "./components/login/login.component";
@@ -28,6 +29,11 @@ export const APP_ROUTES: Routes = [{
       path: 'grades-student',
       outlet: 'dashboard',
       component: GradesStudentComponent,
+    },
+    {
+      path: 'grades-teacher',
+      outlet: 'dashboard',
+      component: GradesTeacherComponent,
     }
   ]
 }]

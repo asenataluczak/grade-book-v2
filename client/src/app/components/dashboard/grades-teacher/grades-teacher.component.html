@@ -1,0 +1,7 @@
+<mat-tab-group>
+  <mat-tab [label]="course.name" *ngFor="let course of courses">
+    <ng-template matTabContent>
+      table with grades
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
