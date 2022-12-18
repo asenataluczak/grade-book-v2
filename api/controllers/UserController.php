@@ -70,4 +70,33 @@ class UserController extends BaseController
 
         //TODO: set output and error handling for deleteAction
     }
+
+    /**
+     * "/user/edit" Endpoint - Edit user by id
+     */
+    public function editAction()
+    {
+        $strErrorDesc = '';
+        $requestMethod = $_SERVER["REQUEST_METHOD"];
+        $arrQueryStringParams = $this->getQueryStringParams();
+
+        if (strtoupper($requestMethod) == 'PATCH') {
+            try {
+                $userModel = new UserModel();
+
+                $userId = $arrQueryStringParams['id'] ?? NULL;
+                $data = file_get_contents('php://input');
+
+                $arrUsers = $userModel->editUser($userId, $data);
+                $responseData = json_encode($arrUsers);
+            } catch (Error $e) {
+                $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
+                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+            }
+        } else {
+            $strErrorDesc = 'Method not supported';
+            $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
+        }
+
+    }
 }

@@ -18,4 +18,8 @@ export class UserService {
   deleteUser(id: number) {
     return this.http.delete(`${environment.backendUrl}/user/delete?id=${id}`)
   }
+
+  editUser(id: number, data: any) {
+    return this.http.patch(`${environment.backendUrl}/user/edit?id=${id}`, data)
+  }
 }

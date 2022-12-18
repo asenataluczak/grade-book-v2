@@ -40,12 +40,12 @@ export class UserDialogComponent {
   }
 
   onSubmit() {
-    let data: any = {
-      fullname: this.mainForm.value.fullname,
-      email: this.mainForm.value.email,
-    };
-    if (this.mainForm.value.password && this.mainForm.value.passwordAgain) {
-      data = { ...data, password: this.mainForm.value.password };
+    let data = this.getDirtyValues(this.mainForm);
+    if (data.hasOwnProperty('role')) {
+      data.role = Roles[data.role]
+    }
+    if (data.hasOwnProperty('passwordAgain')) {
+      delete data.passwordAgain
     }
     this.dialogRef.close(data);
   }
@@ -75,5 +75,23 @@ export class UserDialogComponent {
         !this.data.user ? Validators.required : [],
       ],
     });
+  }
+
+  private getDirtyValues(form: any) {
+    let dirtyValues: any = {};
+
+    Object.keys(form.controls)
+      .forEach(key => {
+        let currentControl = form.controls[key];
+
+        if (currentControl.dirty) {
+          if (currentControl.controls)
+            dirtyValues[key] = this.getDirtyValues(currentControl);
+          else
+            dirtyValues[key] = currentControl.value;
+        }
+      });
+
+    return dirtyValues;
   }
 }

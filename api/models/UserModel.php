@@ -33,8 +33,13 @@ class UserModel extends Database
     }
 
     // PATCH
-    public function updateUser()
+    public function editUser($id, $data)
     {
+        $data = json_decode($data, TRUE);
+
+        foreach ($data as $key => $value) {
+            return $this->executeStatement("UPDATE users SET $key='$value' WHERE id = $id");
+        }
     }
 }
 

@@ -35,8 +35,7 @@ export class UsersComponent {
     });
     dialogRef.afterClosed().subscribe(data => {
       if (data && user) {
-        // TODO: update user
-        console.log('update user')
+        this.userService.editUser(user.id, data).subscribe(() => { this.users$ = this.userService.getUsers() })
       }
     })
   }
