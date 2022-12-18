@@ -20,8 +20,13 @@ class UserModel extends Database
     }
 
     // POST
-    public function addUser()
+    public function addUser($data)
     {
+        $data = json_decode($data, true);
+        $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+        $keys = implode(',', array_keys($data));
+        $values = "\"" . implode("\",\"", array_values($data)) . "\"";
+        return $this->executeStatement("INSERT INTO users($keys) VALUES($values)");
     }
 
     // DELETE
@@ -38,7 +43,7 @@ class UserModel extends Database
         $data = json_decode($data, TRUE);
 
         foreach ($data as $key => $value) {
-            if ($key == 'password'){
+            if ($key == 'password') {
                 $value = password_hash($value, PASSWORD_BCRYPT);
             }
             return $this->executeStatement("UPDATE users SET $key='$value' WHERE id = $id");
