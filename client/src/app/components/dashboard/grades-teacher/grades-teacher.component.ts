@@ -18,7 +18,7 @@ import { GradesTeacherTableComponent } from './grades-teacher-table/grades-teach
 })
 export class GradesTeacherComponent {
   courses: Array<Course>;
-  students: Array<User> = [];
+  students: Array<User> | any;
 
   constructor(private gradeService: GradeService, private userService: UserService) {
     this.courses = this.gradeService.getCourses();
