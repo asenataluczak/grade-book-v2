@@ -2,7 +2,7 @@
 class CourseController extends BaseController
 {
     /**
-     * "/user/list" Endpoint - Get list of users
+     * "/course/list" Endpoint - Get list of courses
      */
     public function listAction()
     {
