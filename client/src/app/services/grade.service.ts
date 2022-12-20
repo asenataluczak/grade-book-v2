@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Grade } from '../interfaces/grade.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class GradeService {
 
   deleteGrade(id: number) {
     return this.http.delete(`${environment.backendUrl}/grade/delete?id=${id}`)
+  }
+
+  addGrade(data: Partial<Grade>) {
+    return this.http.post(`${environment.backendUrl}/grade/add`, data)
   }
 }

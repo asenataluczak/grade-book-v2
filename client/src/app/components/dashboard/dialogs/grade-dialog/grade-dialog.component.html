@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>[{{ data.course.name }}] {{data.studentName || ''}} {{ !data.grade ? ' - Dodawanie oceny' : ''
+<h1 mat-dialog-title>[{{ data.course.name }}] {{data.student.fullname || ''}} {{ !data.grade ? ' - Dodawanie oceny' : ''
   }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="mainForm">
@@ -20,7 +20,7 @@
     </div>
   </form>
 </div>
-<div *ngIf="data.studentName" mat-dialog-actions class="d-flex justify-content-end mt-2">
+<div *ngIf="data.student" mat-dialog-actions class="d-flex justify-content-end mt-2">
   <button mat-stroked-button mat-dialog-close>Anuluj</button>
   <button *ngIf="data.grade" mat-flat-button color="accent" (click)="onDelete()">Usuń</button>
   <button mat-flat-button color="primary" [disabled]="mainForm.pristine || mainForm.invalid" (click)="onUpdateOrCreate()">{{

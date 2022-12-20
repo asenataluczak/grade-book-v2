@@ -33,15 +33,14 @@ export class GradesTeacherTableComponent implements OnInit {
     return this.allGrades?.filter((grade: Grade) => grade.userId === studentId)
   }
 
-  openViewGrade(course: any, studentName: string, grade?: Grade) {
+  openViewGrade(course: any, student: User, grade?: Grade) {
     const dialogRef = this.dialog.open(GradeDialogComponent, {
-      data: { grade, course, studentName },
+      data: { grade, course, student },
       width: '700px'
     });
-    dialogRef.afterClosed().subscribe(data => {
-      if (data) {
-        this.getGradesPerCourse()
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      // TODO: get grades only when anything changes
+      this.getGradesPerCourse()
     })
   }
 

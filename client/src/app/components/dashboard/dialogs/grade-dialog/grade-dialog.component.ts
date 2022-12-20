@@ -6,6 +6,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Grade } from 'src/app/interfaces/grade.interface';
+import { User } from 'src/app/interfaces/user.interface';
 import { GradeService } from 'src/app/services/grade.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class GradeDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<GradeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { grade: Grade; course: any; studentName: string },
+    @Inject(MAT_DIALOG_DATA) public data: { grade: Grade; course: any; student: User },
     private fb: FormBuilder,
     private gradeService: GradeService
   ) {
@@ -34,7 +35,15 @@ export class GradeDialogComponent implements OnInit {
       // TODO: update grade
     }
     if (!this.data.grade) {
-      // TODO: add grade
+      this.gradeService.addGrade({
+        userId: this.data.student.id,
+        courseId: this.data.course.id,
+        description: this.mainForm.value.description,
+        value: this.mainForm.value.value,
+        author: 'Zdzislawa Zalogowana'
+      }).subscribe(() => {
+        this.dialogRef.close();
+      });
     }
   }
 
@@ -53,14 +62,14 @@ export class GradeDialogComponent implements OnInit {
       description: [
         {
           value: this.data.grade?.description || '',
-          disabled: !this.data.studentName,
+          disabled: !this.data.student,
         },
         !this.data.grade ? Validators.required : []
       ],
       value: [
         {
           value: this.data.grade?.value || '',
-          disabled: !this.data.studentName,
+          disabled: !this.data.student,
         },
         !this.data.grade ? Validators.required : []
       ],
