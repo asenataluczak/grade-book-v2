@@ -11,4 +11,12 @@ class GradeModel extends Database
         }
         return $this->select("SELECT * FROM grades");
     }
+
+    // DELETE
+    public function deleteGrade($id)
+    {
+        if (!is_null($id)) {
+            return $this->executeStatement("DELETE FROM grades WHERE id =?", ["i", $id]);
+        }
+    }
 }

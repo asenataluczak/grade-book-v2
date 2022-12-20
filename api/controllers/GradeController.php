@@ -40,4 +40,33 @@ class GradeController extends BaseController
             );
         }
     }
+
+        /**
+     * "/grade/delete" Endpoint - Delete user by id
+     */
+    public function deleteAction()
+    {
+        $strErrorDesc = '';
+        $requestMethod = $_SERVER["REQUEST_METHOD"];
+        $arrQueryStringParams = $this->getQueryStringParams();
+
+        if (strtoupper($requestMethod) == 'DELETE') {
+            try {
+                $gradeModel = new GradeModel();
+
+                $gradeId = $arrQueryStringParams['id'] ?? NULL;
+
+                $arrGrades = $gradeModel->deleteGrade($gradeId);
+                $responseData = json_encode($arrGrades);
+            } catch (Error $e) {
+                $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
+                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+            }
+        } else {
+            $strErrorDesc = 'Method not supported';
+            $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
+        }
+
+        //TODO: set output and error handling for deleteAction
+    }
 }
