@@ -17,4 +17,12 @@ export class GradeService {
     }
     return JSON.parse(localStorage.getItem('courses') as string)
   }
+
+  getGradesPerCourse(courseId: number) {
+    return this.http.get(`${environment.backendUrl}/grade/list?course=${courseId}`)
+  }
+
+  deleteGrade(id: number) {
+    return this.http.delete(`${environment.backendUrl}/grade/delete?id=${id}`)
+  }
 }

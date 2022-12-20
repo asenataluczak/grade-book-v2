@@ -14,11 +14,12 @@
       <td>
         <span *ngFor="let grade of getGrades(student.id)"
           class="bg-primary text-white px-3 py-2 me-1 d-inline-block pe-auto"
-          style="border-radius: 10%; cursor: pointer"><strong>{{ grade.value
+          style="border-radius: 10%; cursor: pointer"
+          (click)="openViewGrade(course, student.fullname, grade)"><strong>{{ grade.value
             }}</strong></span>
       </td>
       <td style="width: 50px" class="ml-auto">
-        <button type="button" mat-icon-button color="primary">
+        <button type="button" mat-icon-button color="primary" (click)="openViewGrade(course, student.fullname)">
           <mat-icon>add</mat-icon>
         </button>
       </td>
