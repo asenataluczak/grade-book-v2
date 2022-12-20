@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>[{{ data.course.name }}] {{data.studentName || ''}} {{ !data.grade ? ' - Dodawanie oceny' : ''
+  }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="mainForm">
+    <div class="row mb-2">
+      <mat-form-field appearance="outline" class="col-4 my-2" [class.col-9]="!data.grade">
+        <mat-label>Opis</mat-label>
+        <input matInput type="text" formControlName="description">
+        <mat-error>Uzupełnij opis</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-3 my-2">
+        <mat-label>Ocena</mat-label>
+        <input matInput min="1" max="6" type="number" formControlName="value">
+        <mat-error>Uzupełnij ocenę</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="data.grade" class="col-5 my-2">
+        <mat-label>Wystawiona przez</mat-label>
+        <input matInput type="text" formControlName="author">
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div *ngIf="data.studentName" mat-dialog-actions class="d-flex justify-content-end mt-2">
+  <button mat-stroked-button mat-dialog-close>Anuluj</button>
+  <button *ngIf="data.grade" mat-flat-button color="accent" (click)="onDelete()">Usuń</button>
+  <button mat-flat-button color="primary" [disabled]="mainForm.pristine || mainForm.invalid" (click)="onUpdateOrCreate()">{{
+    data.grade ? 'Edytuj' : 'Dodaj'
+    }}</button>
+
+</div>
