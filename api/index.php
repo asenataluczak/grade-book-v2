@@ -28,10 +28,12 @@ $segmentsNumber = count($pathSegments);
 if ($pathSegments[0] == 'user') {
     require "./controllers/UserController.php";
     $objFeedController = new UserController();
-}
-else if ($pathSegments[0] == 'course') {
+} else if ($pathSegments[0] == 'course') {
     require "./controllers/CourseController.php";
     $objFeedController = new CourseController();
+} else if ($pathSegments[0] == 'grade') {
+    require "./controllers/GradeController.php";
+    $objFeedController = new GradeController();
 } else {
     header("HTTP/1.1 404 Not Found");
     exit();
