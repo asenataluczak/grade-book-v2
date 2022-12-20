@@ -19,4 +19,14 @@ class GradeModel extends Database
             return $this->executeStatement("DELETE FROM grades WHERE id =?", ["i", $id]);
         }
     }
+
+    // POST
+    public function addGrade($data)
+    {
+        $data = json_decode($data, true);
+        $keys = implode(',', array_keys($data));
+        $values = "\"" . implode("\",\"", array_values($data)) . "\"";
+        $now = date('Y-m-d H:i:s');
+        return $this->executeStatement("INSERT INTO grades($keys, createdAt) VALUES($values, \"$now\")");
+    }
 }
