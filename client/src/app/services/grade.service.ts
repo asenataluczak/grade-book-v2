@@ -34,4 +34,8 @@ export class GradeService {
   editGrade(id: number, data: Partial<Grade>) {
     return this.http.patch(`${environment.backendUrl}/grade/edit?id=${id}`, data)
   }
+
+  getGradeHistory(id: number) {
+    return this.http.get(`${environment.backendUrl}/grade/history?id=${id}`)
+  }
 }

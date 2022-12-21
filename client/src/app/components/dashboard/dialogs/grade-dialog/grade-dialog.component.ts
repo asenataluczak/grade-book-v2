@@ -18,6 +18,7 @@ import { getDirtyValues } from 'src/app/utils/utils';
 })
 export class GradeDialogComponent implements OnInit {
   mainForm: FormGroup | any;
+  history: any;
 
   constructor(
     public dialogRef: MatDialogRef<GradeDialogComponent>,
@@ -29,6 +30,11 @@ export class GradeDialogComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    if (this.data.grade) {
+      this.gradeService.getGradeHistory(this.data.grade.id).subscribe((data: any) => {
+        this.history = data
+      })
+    }
   }
 
   onUpdateOrCreate() {
@@ -59,6 +65,10 @@ export class GradeDialogComponent implements OnInit {
         }
       );
     }
+  }
+
+  getDate(date: string) {
+    return new Date(date).toLocaleString()
   }
 
   private buildForm() {
