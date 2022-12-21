@@ -29,4 +29,16 @@ class GradeModel extends Database
         $now = date('Y-m-d H:i:s');
         return $this->executeStatement("INSERT INTO grades($keys, createdAt) VALUES($values, \"$now\")");
     }
+    
+    // PATCH
+    public function editGrade($id, $data)
+    {
+        $data = json_decode($data, TRUE);
+        $now = date('Y-m-d H:i:s');
+
+        foreach ($data as $key => $value) {
+            $this->executeStatement("UPDATE grades SET $key='$value' WHERE id = $id");
+        }
+        $this->executeStatement("UPDATE grades SET createdAt='$now' WHERE id = $id");
+    }
 }

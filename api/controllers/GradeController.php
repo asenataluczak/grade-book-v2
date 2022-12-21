@@ -97,4 +97,34 @@ class GradeController extends BaseController
 
     //TODO: set output and error handling
   }
+
+  /**
+   * "/grade/edit" Endpoint - Edit grade by id
+   */
+  public function editAction()
+  {
+    $strErrorDesc = '';
+    $requestMethod = $_SERVER["REQUEST_METHOD"];
+    $arrQueryStringParams = $this->getQueryStringParams();
+
+    if (strtoupper($requestMethod) == 'PATCH') {
+      try {
+        $gradeModel = new GradeModel();
+
+        $gradeId = $arrQueryStringParams['id'] ?? NULL;
+        $data = file_get_contents('php://input');
+
+        $arrGrades = $gradeModel->editGrade($gradeId, $data);
+        $responseData = json_encode($arrGrades);
+      } catch (Error $e) {
+        $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
+        $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+      }
+    } else {
+      $strErrorDesc = 'Method not supported';
+      $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
+    }
+
+    //TODO: set output and error handling
+  }
 }
