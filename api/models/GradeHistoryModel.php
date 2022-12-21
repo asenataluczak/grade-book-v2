@@ -7,7 +7,7 @@ class GradeHistoryModel extends Database
     public function getGradeHistory($gradeId)
     {
         if (!is_null($gradeId)) {
-            return $this->select("SELECT * FROM history WHERE gradeId = ?", ["i", $gradeId]);
+            return $this->select("SELECT * FROM history WHERE gradeId = ? ORDER BY createdAt DESC", ["i", $gradeId]);
         }
     }
 }
