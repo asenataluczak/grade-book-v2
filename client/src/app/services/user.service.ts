@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(role?: number): Observable<Array<User>> {
-    return this.http.get<Array<User>>(`${environment.backendUrl}/user/list${role ? '?role = ' + role : ''}`)
+    return this.http.get<Array<User>>(`${environment.backendUrl}/user/list${role ? '?role=' + role : ''}`)
   }
 
   deleteUser(id: number) {
