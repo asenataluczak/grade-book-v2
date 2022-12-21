@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Grade } from 'src/app/interfaces/grade.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { GradeService } from 'src/app/services/grade.service';
+import { getDirtyValues } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-grade-dialog',
@@ -32,7 +33,10 @@ export class GradeDialogComponent implements OnInit {
 
   onUpdateOrCreate() {
     if (this.data.grade) {
-      // TODO: update grade
+      let data = getDirtyValues(this.mainForm);
+      this.gradeService.editGrade(this.data.grade.id, data).subscribe(() => {
+        this.dialogRef.close();
+      });
     }
     if (!this.data.grade) {
       this.gradeService.addGrade({

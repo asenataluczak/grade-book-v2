@@ -31,4 +31,7 @@ export class GradeService {
     return this.http.post(`${environment.backendUrl}/grade/add`, data)
   }
 
+  editGrade(id: number, data: Partial<Grade>) {
+    return this.http.patch(`${environment.backendUrl}/grade/edit?id=${id}`, data)
+  }
 }
