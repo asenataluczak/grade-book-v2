@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Roles } from 'src/app/utils/roles.enum';
 import { MatOptionModule } from '@angular/material/core';
+import { getDirtyValues } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-user-dialog',
@@ -40,7 +41,7 @@ export class UserDialogComponent {
   }
 
   onSubmit() {
-    let data = this.getDirtyValues(this.mainForm);
+    let data = getDirtyValues(this.mainForm);
     if (data.hasOwnProperty('role')) {
       data.role = Roles[data.role]
     }
@@ -75,23 +76,5 @@ export class UserDialogComponent {
         !this.data.user ? Validators.required : [],
       ],
     });
-  }
-
-  private getDirtyValues(form: any) {
-    let dirtyValues: any = {};
-
-    Object.keys(form.controls)
-      .forEach(key => {
-        let currentControl = form.controls[key];
-
-        if (currentControl.dirty) {
-          if (currentControl.controls)
-            dirtyValues[key] = this.getDirtyValues(currentControl);
-          else
-            dirtyValues[key] = currentControl.value;
-        }
-      });
-
-    return dirtyValues;
   }
 }

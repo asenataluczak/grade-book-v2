@@ -30,4 +30,5 @@ export class GradeService {
   addGrade(data: Partial<Grade>) {
     return this.http.post(`${environment.backendUrl}/grade/add`, data)
   }
+
 }
