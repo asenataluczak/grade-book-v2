@@ -14,7 +14,7 @@ class UserController extends BaseController
             try {
                 $userModel = new UserModel();
 
-                $role = $arrQueryStringParams['role_'] ?? NULL;
+                $role = $arrQueryStringParams['role'] ?? NULL;
                 $userId = $arrQueryStringParams['id'] ?? NULL;
 
                 $arrUsers = $userModel->getUsers($role, $userId);
