@@ -121,10 +121,12 @@ class GradeController extends BaseController
     if (strtoupper($requestMethod) == 'POST') {
       try {
         $gradeModel = new GradeModel();
+        $gradeHistoryModel = new GradeHistoryModel();
 
         $data = file_get_contents('php://input');
 
         $arrGrades = $gradeModel->addGrade($data);
+        $gradeHistoryModel->addGradeHistory($data);
         $responseData = json_encode($arrGrades);
       } catch (Error $e) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
@@ -150,11 +152,13 @@ class GradeController extends BaseController
     if (strtoupper($requestMethod) == 'PATCH') {
       try {
         $gradeModel = new GradeModel();
+        $gradeHistoryModel = new GradeHistoryModel();
 
         $gradeId = $arrQueryStringParams['id'] ?? NULL;
         $data = file_get_contents('php://input');
-
+        
         $arrGrades = $gradeModel->editGrade($gradeId, $data);
+        $gradeHistoryModel->addGradeHistory($data);
         $responseData = json_encode($arrGrades);
       } catch (Error $e) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
