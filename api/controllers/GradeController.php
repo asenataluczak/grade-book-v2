@@ -41,7 +41,7 @@ class GradeController extends BaseController
     }
   }
 
-    /**
+  /**
    * "/grade/history" Endpoint - Get history of grades by its id
    */
   public function historyAction()
@@ -126,7 +126,7 @@ class GradeController extends BaseController
         $data = file_get_contents('php://input');
 
         $arrGrades = $gradeModel->addGrade($data);
-        $gradeHistoryModel->addGradeHistory($data);
+        $gradeHistoryModel->addGradeHistory($data, $arrGrades->insert_id);
         $responseData = json_encode($arrGrades);
       } catch (Error $e) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
@@ -156,9 +156,9 @@ class GradeController extends BaseController
 
         $gradeId = $arrQueryStringParams['id'] ?? NULL;
         $data = file_get_contents('php://input');
-        
+
         $arrGrades = $gradeModel->editGrade($gradeId, $data);
-        $gradeHistoryModel->addGradeHistory($data);
+        $gradeHistoryModel->addGradeHistory(json_encode($arrGrades[0]), $gradeId);
         $responseData = json_encode($arrGrades);
       } catch (Error $e) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';

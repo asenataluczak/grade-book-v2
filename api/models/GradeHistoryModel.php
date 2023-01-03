@@ -12,14 +12,19 @@ class GradeHistoryModel extends Database
     }
 
     // POST
-    public function addGradeHistory($data)
+    public function addGradeHistory($data, $gradeId)
     {
         $data = json_decode($data, true);
         unset($data['userId']);
         unset($data['courseId']);
+        unset($data['id']);
         $keys = implode(',', array_keys($data));
         $values = "\"" . implode("\",\"", array_values($data)) . "\"";
-        $now = date('Y-m-d H:i:s');
-        return $this->executeStatement("INSERT INTO history($keys, createdAt) VALUES($values, \"$now\")");
+        if (!isset($data['createdAt'])) {
+            $now = date('Y-m-d H:i:s');
+            return $this->executeStatement("INSERT INTO history($keys, createdAt, gradeId) VALUES($values, \"$now\", \"$gradeId\")");
+        } else {
+            return $this->executeStatement("INSERT INTO history($keys, gradeId) VALUES($values, \"$gradeId\")");
+        }
     }
 }

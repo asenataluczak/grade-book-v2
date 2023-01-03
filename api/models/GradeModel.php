@@ -40,5 +40,6 @@ class GradeModel extends Database
             $this->executeStatement("UPDATE grades SET $key='$value' WHERE id = $id");
         }
         $this->executeStatement("UPDATE grades SET createdAt='$now' WHERE id = $id");
+        return $this->select("SELECT * FROM grades WHERE id = $id");
     }
 }
