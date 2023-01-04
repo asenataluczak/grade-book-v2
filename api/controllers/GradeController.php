@@ -93,10 +93,12 @@ class GradeController extends BaseController
     if (strtoupper($requestMethod) == 'DELETE') {
       try {
         $gradeModel = new GradeModel();
+        $gradeHistoryModel = new GradeHistoryModel();
 
         $gradeId = $arrQueryStringParams['id'] ?? NULL;
 
         $arrGrades = $gradeModel->deleteGrade($gradeId);
+        $gradeHistoryModel->deleteGradeHistory($gradeId);
         $responseData = json_encode($arrGrades);
       } catch (Error $e) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';

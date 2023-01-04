@@ -27,4 +27,12 @@ class GradeHistoryModel extends Database
             return $this->executeStatement("INSERT INTO history($keys, gradeId) VALUES($values, \"$gradeId\")");
         }
     }
+
+    // POST
+    public function deleteGradeHistory($gradeId)
+    {
+        if (!is_null($gradeId)) {
+            return $this->executeStatement("DELETE FROM history WHERE gradeId =?", ["i", $gradeId]);
+        }
+    }
 }
