@@ -7,6 +7,7 @@ class UserController extends BaseController
     public function listAction()
     {
         $strErrorDesc = '';
+        $strErrorHeader = '';
         $requestMethod = $_SERVER["REQUEST_METHOD"];
         $arrQueryStringParams = $this->getQueryStringParams();
 
@@ -28,18 +29,7 @@ class UserController extends BaseController
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
 
-        // send output
-        if (!$strErrorDesc) {
-            $this->sendOutput(
-                $responseData,
-                array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-            );
-        } else {
-            $this->sendOutput(
-                json_encode(array('error' => $strErrorDesc)),
-                array('Content-Type: application/json', $strErrorHeader)
-            );
-        }
+        $this->prepareOutput($responseData, $strErrorDesc, $strErrorHeader);
     }
 
     /**
@@ -48,6 +38,7 @@ class UserController extends BaseController
     public function deleteAction()
     {
         $strErrorDesc = '';
+        $strErrorHeader = '';
         $requestMethod = $_SERVER["REQUEST_METHOD"];
         $arrQueryStringParams = $this->getQueryStringParams();
 
@@ -68,7 +59,7 @@ class UserController extends BaseController
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
 
-        //TODO: set output and error handling for deleteAction
+        $this->prepareOutput($responseData, $strErrorDesc, $strErrorHeader);
     }
 
     /**
@@ -77,6 +68,7 @@ class UserController extends BaseController
     public function editAction()
     {
         $strErrorDesc = '';
+        $strErrorHeader = '';
         $requestMethod = $_SERVER["REQUEST_METHOD"];
         $arrQueryStringParams = $this->getQueryStringParams();
 
@@ -98,7 +90,7 @@ class UserController extends BaseController
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
 
-        //TODO: set output and error handling
+        $this->prepareOutput($responseData, $strErrorDesc, $strErrorHeader);
     }
 
     /**
@@ -107,6 +99,7 @@ class UserController extends BaseController
     public function addAction()
     {
         $strErrorDesc = '';
+        $strErrorHeader = '';
         $requestMethod = $_SERVER["REQUEST_METHOD"];
 
         if (strtoupper($requestMethod) == 'POST') {
@@ -126,6 +119,21 @@ class UserController extends BaseController
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
 
-        //TODO: set output and error handling
+        $this->prepareOutput($responseData, $strErrorDesc, $strErrorHeader);
+    }
+
+    private function prepareOutput($responseData, $strErrorDesc = '', $strErrorHeader = '')
+    {
+        if (!$strErrorDesc) {
+            $this->sendOutput(
+                $responseData,
+                array('Content-Type: application/json', 'HTTP/1.1 200 OK')
+            );
+        } else {
+            $this->sendOutput(
+                json_encode(array('error' => $strErrorDesc)),
+                array('Content-Type: application/json', $strErrorHeader)
+            );
+        }
     }
 }
