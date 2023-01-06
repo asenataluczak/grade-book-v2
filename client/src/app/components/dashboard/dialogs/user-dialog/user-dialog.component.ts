@@ -58,10 +58,7 @@ export class UserDialogComponent {
         !this.data.user ? [Validators.required, Validators.pattern(FULLNAME_PATTERN)] : [Validators.pattern(FULLNAME_PATTERN)],
       ],
       email: [
-        {
-          value: this.data.user?.email || '',
-          disabled: this.data.user,
-        },
+        this.data.user?.email || '',
         !this.data.user ? [Validators.required, Validators.pattern(EMAIL_PATTERN)] : [Validators.pattern(EMAIL_PATTERN)],
       ],
       password: ['', !this.data.user ? Validators.required : []],
