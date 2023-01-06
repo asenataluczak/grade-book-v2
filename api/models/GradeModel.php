@@ -13,10 +13,15 @@ class GradeModel extends Database
     }
 
     // DELETE
-    public function deleteGrade($id)
+    public function deleteGrade($gradeId, $userId = null)
     {
-        if (!is_null($id)) {
-            return $this->executeStatement("DELETE FROM grades WHERE id =?", ["i", $id]);
+        if (!is_null($gradeId)) {
+            return $this->executeStatement("DELETE FROM grades WHERE id =?", ["i", $gradeId]);
+        }
+        if (!is_null($userId)) {
+            $gradeId = $this->select("SELECT * FROM grades WHERE userId = ?", ["i", $userId]);
+            $this->executeStatement("DELETE FROM grades WHERE userId =?", ["i", $userId]);
+            return $gradeId;
         }
     }
 

@@ -45,9 +45,13 @@ class UserController extends BaseController
         if (strtoupper($requestMethod) == 'DELETE') {
             try {
                 $userModel = new UserModel();
+                $gradeModel = new GradeModel();
+                $gradeHistoryModel = new GradeHistoryModel();
 
                 $userId = $arrQueryStringParams['id'] ?? NULL;
 
+                $grade = $gradeModel->deleteGrade(null, $userId);
+                $gradeHistoryModel->deleteGradeHistory($grade[0]['id']);
                 $arrUsers = $userModel->deleteUser($userId);
                 $responseData = json_encode($arrUsers);
             } catch (Error $e) {

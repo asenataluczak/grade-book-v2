@@ -42,7 +42,7 @@ class GradeController extends BaseController
   }
 
   /**
-   * "/grade/history" Endpoint - Get history of grades by its id
+   * "/grade/history" Endpoint - Get history of grade by its id
    */
   public function historyAction()
   {
@@ -82,7 +82,7 @@ class GradeController extends BaseController
   }
 
   /**
-   * "/grade/delete" Endpoint - Delete user by id
+   * "/grade/delete" Endpoint - Delete grade by id
    */
   public function deleteAction()
   {
