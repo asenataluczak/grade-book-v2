@@ -20,12 +20,8 @@ class GradeHistoryModel extends Database
         unset($data['id']);
         $keys = implode(',', array_keys($data));
         $values = "\"" . implode("\",\"", array_values($data)) . "\"";
-        if (!isset($data['createdAt'])) {
-            $now = date('Y-m-d H:i:s');
-            return $this->executeStatement("INSERT INTO history($keys, createdAt, gradeId) VALUES($values, \"$now\", \"$gradeId\")");
-        } else {
-            return $this->executeStatement("INSERT INTO history($keys, gradeId) VALUES($values, \"$gradeId\")");
-        }
+        $now = date('Y-m-d H:i:s');
+        return $this->executeStatement("INSERT INTO history($keys, createdAt, gradeId) VALUES($values, \"$now\", \"$gradeId\")");
     }
 
     // POST

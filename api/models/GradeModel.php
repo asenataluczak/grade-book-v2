@@ -26,20 +26,17 @@ class GradeModel extends Database
         $data = json_decode($data, true);
         $keys = implode(',', array_keys($data));
         $values = "\"" . implode("\",\"", array_values($data)) . "\"";
-        $now = date('Y-m-d H:i:s');
-        return $this->executeStatement("INSERT INTO grades($keys, createdAt) VALUES($values, \"$now\")");
+        return $this->executeStatement("INSERT INTO grades($keys) VALUES($values)");
     }
-    
+
     // PATCH
     public function editGrade($id, $data)
     {
         $data = json_decode($data, TRUE);
-        $now = date('Y-m-d H:i:s');
 
         foreach ($data as $key => $value) {
             $this->executeStatement("UPDATE grades SET $key='$value' WHERE id = $id");
         }
-        $this->executeStatement("UPDATE grades SET createdAt='$now' WHERE id = $id");
         return $this->select("SELECT * FROM grades WHERE id = $id");
     }
 }
