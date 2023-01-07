@@ -19,7 +19,7 @@
         <button mat-icon-button color="primary" (click)="openUserDialog(user)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="accent" (click)="deleteUser(user.id)">
+        <button *ngIf="notCurrentUser(user.id)" mat-icon-button color="accent" (click)="deleteUser(user.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

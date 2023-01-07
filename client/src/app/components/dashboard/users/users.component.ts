@@ -37,7 +37,7 @@ export class UsersComponent {
       if (data && user) {
         this.userService.editUser(user.id, data).subscribe(() => { this.users$ = this.userService.getUsers() })
       }
-      if (data) {
+      else if (data) {
         this.userService.addUser(data).subscribe(() => { this.users$ = this.userService.getUsers() })
       }
     })
@@ -52,6 +52,10 @@ export class UsersComponent {
         this.userService.deleteUser(userId).subscribe(() => { this.users$ = this.userService.getUsers() })
       }
     })
+  }
+
+  notCurrentUser(userId: any) {
+    return userId !== +localStorage.getItem('userId')!
   }
 
 }

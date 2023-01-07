@@ -51,7 +51,9 @@ class UserController extends BaseController
                 $userId = $arrQueryStringParams['id'] ?? NULL;
 
                 $grade = $gradeModel->deleteGrade(null, $userId);
-                $gradeHistoryModel->deleteGradeHistory($grade[0]['id']);
+                if (count($grade) > 0) {
+                    $gradeHistoryModel->deleteGradeHistory($grade[0]['id']);
+                }
                 $arrUsers = $userModel->deleteUser($userId);
                 $responseData = json_encode($arrUsers);
             } catch (Error $e) {

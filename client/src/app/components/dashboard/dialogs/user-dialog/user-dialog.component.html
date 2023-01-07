@@ -33,7 +33,7 @@
 </div>
 <div mat-dialog-actions class="d-flex justify-content-end">
   <button mat-stroked-button mat-dialog-close color="primary">Anuluj</button>
-  <button mat-flat-button color="accent" [disabled]="(data.user && mainForm.invalid) || mainForm.pristine"
+  <button mat-flat-button color="accent" [disabled]="mainForm.pristine || mainForm.invalid"
     (click)="onSubmit()">{{ data.user
     ? 'Edytuj' : 'Dodaj' }}</button>
 </div>

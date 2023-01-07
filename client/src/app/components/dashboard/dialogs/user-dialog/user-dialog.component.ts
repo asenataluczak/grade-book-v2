@@ -69,7 +69,10 @@ export class UserDialogComponent {
           : [PasswordValidator('password')],
       ],
       role: [
-        this.roles[this.data.user?.role] || '',
+        {
+          value: this.roles[this.data.user?.role] || '',
+          disabled: this.data.user,
+        },
         !this.data.user ? Validators.required : [],
       ],
     });

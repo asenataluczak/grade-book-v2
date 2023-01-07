@@ -20,6 +20,9 @@ export class UserService {
   }
 
   editUser(id: number, data: any) {
+    if(data.fullname){
+      localStorage.setItem('fullname', data.fullname)
+    }
     return this.http.patch(`${environment.backendUrl}/user/edit?id=${id}`, data)
   }
 
