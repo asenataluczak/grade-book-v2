@@ -15,9 +15,12 @@ class UserModel extends Database
         return $this->select("SELECT * FROM users");
     }
 
-    public function activateUser($token)
+    // GET
+    public function getUserByEmail($email)
     {
+        return $this->select("SELECT * FROM users WHERE email = ?", ["s", $email]);
     }
+
 
     // POST
     public function addUser($data)
