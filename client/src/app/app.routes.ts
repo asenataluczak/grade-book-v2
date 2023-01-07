@@ -6,15 +6,22 @@ import { UsersComponent } from "./components/dashboard/users/users.component";
 import { WelcomeComponent } from "./components/dashboard/welcome/welcome.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { AdminGuard } from "./guards/admin.guard";
+import { AuthGuard, NotAuthGuard } from "./guards/auth.guard";
+import { StudentGuard } from "./guards/student.guard";
+import { TeacherGuard } from "./guards/teacher.guard";
 
 export const APP_ROUTES: Routes = [{
   path: '', pathMatch: 'full', redirectTo: 'dashboard'
 }, {
-  path: 'login', component: LoginComponent
+  path: 'login', component: LoginComponent,
+  canActivate: [NotAuthGuard],
 }, {
-  path: 'register', component: RegisterComponent
+  path: 'register', component: RegisterComponent,
+  canActivate: [NotAuthGuard],
 }, {
   path: 'dashboard', component: DashboardComponent,
+  canActivate: [AuthGuard],
   children: [
     {
       path: '',
@@ -23,16 +30,19 @@ export const APP_ROUTES: Routes = [{
     }, {
       path: 'users',
       outlet: 'dashboard',
+      canActivate: [AdminGuard],
       component: UsersComponent,
     },
     {
       path: 'grades-student',
       outlet: 'dashboard',
+      canActivate: [StudentGuard],
       component: GradesStudentComponent,
     },
     {
       path: 'grades-teacher',
       outlet: 'dashboard',
+      canActivate: [TeacherGuard],
       component: GradesTeacherComponent,
     }
   ]
