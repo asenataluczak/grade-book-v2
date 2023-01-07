@@ -5,7 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EMAIL_PATTERN } from 'src/app/utils/utils.constants';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -22,11 +23,16 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.buildForm();
   }
 
   onSubmit() {
+    this.authService.login(this.mainForm.value.email, this.mainForm.value.password).subscribe((data: any) => {
+      this.router.navigateByUrl('/dashboard')
+    })
   }
 
   private buildForm() {
