@@ -1,92 +1,53 @@
-# POST http://localhost:8041/BE-php-grade-book/index.php/login HTTP/1.1
-# content-type: application/json
-
-# {   
-#     "email": "asenata.luczak@gmail.com",
-#     "password": "qwerty"
-# }
-
-# ###
-
-# DELETE http://localhost:8041/BE-php-grade-book/index.php/logout
-
-# ###
-
-# GET http://localhost:8041/BE-php-grade-book/index.php/users/0
-
-# ###
-
-GET http://localhost:8041/BE-php-grade-book/index.php/user/list
+GET http://localhost/grade-book-v2/api/index.php/user/list?role=0
 
 ###
 
-# GET http://localhost:8041/BE-php-grade-book/index.php/auth
+POST http://localhost/grade-book-v2/api/index.php/auth/login HTTP/1.1
+content-type: application/json
 
-# ###
+{
+    "email": "q@qq",
+    "password": "qwerty",
+    "sessionId": "ce6lv5j0ldkdn1o5s1a493r5jc"
+}
 
-# GET http://localhost:8041/BE-php-grade-book/index.php/users/2/user
+###
+
+GET http://localhost/grade-book-v2/api/index.php/auth/status
+
+###
+
+DELETE http://localhost/grade-book-v2/api/index.php/auth/logout
+
+###
+
+GET http://localhost/grade-book-v2/api/index.php/grade/list?course=4
 
 ###
 
 DELETE http://localhost:80/grade-book-v2/api/index.php/user/delete?id=2
 
-# ###
+###
 
-# POST http://localhost:8041/BE-php-grade-book/index.php/users/register HTTP/1.1
-# content-type: application/json
+POST http://localhost/grade-book-v2/api/index.php/user/add HTTP/1.1
+content-type: application/json
 
-# {
-#     "fullname": "krystyna testowa",
-#     "email": "krystyna.testowa@mailowy",
-#     "password": "qwerty"
-# }
+{
+    "fullname": "aaaa aa",
+    "email": "a.a@a",
+    "password": "qwerty",
+    "role": 1
+}
 
-# ###
+###
 
-# PATCH http://localhost:8041/BE-php-grade-book/index.php/users/19 HTTP/1.1
-# content-type: application/json
+PATCH http://localhost/grade-book-v2/index.php/user/edit?id=19 HTTP/1.1
+content-type: application/json
 
-# {
-#     "password": "Qwerty1"
-# }
+{
+    "fullname": "Qwerty1"
+}
 
-# ###
+###
 
-# GET http://localhost:8041/BE-php-grade-book/index.php/courses
-
-# ###
-
-# GET http://localhost:8041/BE-php-grade-book/index.php/grades/14
-
-# ###
-
-# DELETE http://localhost:8041/BE-php-grade-book/index.php/grades/3
-
-
-# ###
-
-# GET http://localhost:8041/BE-php-grade-book/index.php/grades/2/course
-
-# ###
-
-# GET http://localhost:8041/BE-php-grade-book/index.php/grades/10/history
-
-# ###
-
-# POST http://localhost:8041/BE-php-grade-book/index.php/grades/14/course/6 HTTP/1.1
-# content-type: application/json
-
-# {
-#     "description": "Kolokwium",
-#     "value": 5,
-#     "author": "Basenata Tłuczek"
-# }
-
-# ###
-# PATCH http://localhost:8041/BE-php-grade-book/index.php/grades/10 HTTP/1.1
-# content-type: application/json
-
-# {
-#     "value": "3",
-#     "author": "Basenata Tłuczek"
-# }
+GET http://localhost/grade-book-v2/api/index.php/course/list
