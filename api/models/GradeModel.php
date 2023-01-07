@@ -4,10 +4,13 @@ require_once "Database.php";
 class GradeModel extends Database
 {
     // GET
-    public function getGrades($course)
+    public function getGrades($course, $user)
     {
         if (!is_null($course)) {
             return $this->select("SELECT * FROM grades WHERE courseId = ?", ["i", $course]);
+        }
+        if (!is_null($user)) {
+            return $this->select("SELECT * FROM grades WHERE userId = ?", ["i", $user]);
         }
         return $this->select("SELECT * FROM grades");
     }

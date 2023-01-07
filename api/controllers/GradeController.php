@@ -15,8 +15,9 @@ class GradeController extends BaseController
         $gradeModel = new GradeModel();
 
         $course = $arrQueryStringParams['course'] ?? NULL;
+        $user = $arrQueryStringParams['user'] ?? NULL;
 
-        $arrGrades = $gradeModel->getGrades($course);
+        $arrGrades = $gradeModel->getGrades($course, $user);
         $responseData = json_encode($arrGrades);
       } catch (Error $e) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
