@@ -23,6 +23,10 @@ export class GradeService {
     return this.http.get(`${environment.backendUrl}/grade/list?course=${courseId}`)
   }
 
+  getGradesPerUser(userId: number) {
+    return this.http.get(`${environment.backendUrl}/grade/list?user=${userId}`)
+  }
+
   deleteGrade(id: number) {
     return this.http.delete(`${environment.backendUrl}/grade/delete?id=${id}`)
   }
