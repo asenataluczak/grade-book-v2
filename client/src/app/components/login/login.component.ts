@@ -20,6 +20,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   mainForm!: FormGroup;
+  error = '';
 
   constructor(
     private fb: FormBuilder,
@@ -30,8 +31,13 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.authService.login(this.mainForm.value.email, this.mainForm.value.password).subscribe((data: any) => {
-      this.router.navigateByUrl('/dashboard')
+    this.authService.login(this.mainForm.value.email, this.mainForm.value.password).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/dashboard')
+      },
+      error: (response: any) => {
+        this.error = response.error.error || response.statusText
+      }
     })
   }
 
