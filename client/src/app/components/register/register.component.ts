@@ -6,7 +6,7 @@ import { PasswordValidator } from 'src/app/utils/confirm-password.validator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.buildForm();
   }
@@ -35,7 +36,7 @@ export class RegisterComponent {
       role: 0
     }
     this.userService.addUser(data).subscribe(() => {
-      // forward to login
+      this.router.navigateByUrl('/login')
     })
   }
 
