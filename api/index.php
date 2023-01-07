@@ -1,16 +1,17 @@
 <?php
 require "./bootstrap.php";
 
+header('Access-Control-Allow-Origin: http://localhost:4200');
+header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
+header('Access-Control-Allow-Headers: token, Content-Type, authorization');
+header('Access-Control-Max-Age: 1728000');
+header('Content-Length: 0');
+header('Content-Type: text/plain');
+header('Access-Control-Allow-Credentials: true');
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
-    header('Access-Control-Allow-Headers: token, Content-Type');
-    header('Access-Control-Max-Age: 1728000');
-    header('Content-Length: 0');
-    header('Content-Type: text/plain');
     die();
 }
-header('Access-Control-Allow-Origin: *');
 
 $filename = basename(__FILE__);
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -27,6 +28,9 @@ if ($pathSegments[0] == 'user') {
 } else if ($pathSegments[0] == 'grade') {
     require "./controllers/GradeController.php";
     $objFeedController = new GradeController();
+} else if ($pathSegments[0] == 'auth') {
+    require "./controllers/AuthController.php";
+    $objFeedController = new AuthController();
 } else {
     header("HTTP/1.1 404 Not Found");
     exit();
