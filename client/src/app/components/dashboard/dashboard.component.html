@@ -6,7 +6,7 @@
     <hr />
     <strong>
       <ul class="nav flex-column">
-        <li>
+        <li *ngIf="userRole === Roles.Student">
           <a class="nav-link text-light" routerLinkActive="bg-light text-primary" [routerLink]="[
               '/dashboard',
               { outlets: { dashboard: 'grades-student' } }
@@ -14,7 +14,7 @@
             Moje oceny
           </a>
         </li>
-        <li>
+        <li *ngIf="userRole !== Roles.Student">
           <a class="nav-link text-light" routerLinkActive="bg-light text-primary" [routerLink]="[
               '/dashboard',
               { outlets: { dashboard: 'grades-teacher' } }
@@ -23,7 +23,7 @@
           </a>
         </li>
         <hr />
-        <li>
+        <li *ngIf="userRole === Roles.Admin">
           <a class="nav-link text-light" routerLinkActive="bg-light text-primary"
             [routerLink]="['/dashboard', { outlets: { dashboard: 'users' } }]">
             Użytkownicy (Admin)
@@ -37,7 +37,7 @@
     <h2 class="text-white">
       Dziennikus Maksimus
     </h2>
-    <span class="text-light mx-4">John Doe - Admin</span>
+    <span class="text-light mx-4">{{userName}} - {{userRoleParsed}}</span>
     <button mat-flat-button color="accent" (click)="logout()">
       Wyloguj
     </button>
