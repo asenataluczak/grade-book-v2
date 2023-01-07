@@ -22,7 +22,7 @@ export class GradeDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<GradeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { grade: Grade; course: any; student: User },
+    @Inject(MAT_DIALOG_DATA) public data: { grade: Grade; course: any; student?: User },
     private fb: FormBuilder,
     private gradeService: GradeService
   ) {
@@ -40,17 +40,18 @@ export class GradeDialogComponent implements OnInit {
   onUpdateOrCreate() {
     if (this.data.grade) {
       let data = getDirtyValues(this.mainForm);
+      data.author = localStorage.getItem('fullname')!
       this.gradeService.editGrade(this.data.grade.id, data).subscribe(() => {
         this.dialogRef.close();
       });
     }
     if (!this.data.grade) {
       this.gradeService.addGrade({
-        userId: this.data.student.id,
+        userId: this.data.student?.id,
         courseId: this.data.course.id,
         description: this.mainForm.value.description,
         value: this.mainForm.value.value,
-        author: 'Zdzislawa Zalogowana'
+        author: localStorage.getItem('fullname')!
       }).subscribe(() => {
         this.dialogRef.close();
       });
